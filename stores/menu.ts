@@ -1,7 +1,7 @@
 // stores/menu.ts
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { useColorMode } from '@vueuse/core';
+
 
 // Define la interfaz para los elementos del menú
 export interface MenuItem {
@@ -33,23 +33,26 @@ export const useMenuStore = defineStore('menu', () => {
   ]);
 
   // Menú móvil
-  const mobileMenuItems = computed(() => [
-    ...leftMenuItems.value.map((item) => ({
-      label: item.label,
-      icon: 'i-heroicons-chevron-right-20-solid',
-      to: item.path,
-    })),
-    ...rightMenuItems.value.map((item) => ({
-      label: item.label,
-      icon: 'i-heroicons-chevron-right-20-solid',
-      to: item.path,
-    })),
-    ...iconItems.value.map((item) => ({
-      label: item.label,
-      icon: item.icon,
-      to: item.path,
-    })),
-  ]);
+  const mobileMenuItems = computed(() =>
+    [
+      ...leftMenuItems.value.map((item) => ({
+        label: item.label,
+        icon: 'i-heroicons-chevron-right-20-solid',
+        to: item.path,
+      })),
+      ...rightMenuItems.value.map((item) => ({
+        label: item.label,
+        icon: 'i-heroicons-chevron-right-20-solid', // Igual para estos items
+        to: item.path,
+      })),
+      ...iconItems.value.map((item) => ({
+        label: item.label,
+        icon: item.icon || '', // Si no hay icono, usa un string vacío o un valor por defecto
+        to: item.path,
+      })),
+    ] as { label: string; icon: string; to: string }[] // Especificamos explícitamente el tipo del array
+  );
+
 
   // Estado del buscador
   const isSearchOpen = ref(false);
