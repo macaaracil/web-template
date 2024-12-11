@@ -68,7 +68,7 @@ const toggleDarkMode = menuStore.toggleDarkMode;
             :icon="isDark ? 'i-heroicons-sun-20-solid' : 'i-heroicons-moon-20-solid'" @click="toggleDarkMode" />
 
           <!-- Mobile Menu Dropdown -->
-          <UDropdown :items="mobileMenuItems" :popper="{ placement: 'bottom-end' }"
+          <UDropdown :items="[[{ label: 'Home', icon: 'home', to: '/' }]]" :popper="{ placement: 'bottom-end' }"
             class="border bg-surface-primary border-surface-tertiary">
             <UButton color="gray" variant="ghost" icon="i-heroicons-bars-3-20-solid" />
           </UDropdown>
